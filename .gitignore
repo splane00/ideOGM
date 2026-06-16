@@ -1,0 +1,14 @@
+# Exclude local environment configurations and big data sets
+example_csvs/
+*.csv
+*.png
+
+# Exclude application packaging folders
+build/
+dist/
+*.spec
+
+# Exclude system specific items
+.DS_Store
+__pycache__/
+*.pyc
