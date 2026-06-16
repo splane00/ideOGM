@@ -11,11 +11,11 @@ The software bridges the gap between text-heavy genomic variant outputs and intu
 
 ## Features
 
-- **Dual Modality Execution:** Switches between a point-and-click GUI and an advanced command-line utility.
-- **Robust Multi-File Batching:** Recursively processes single `.csv` outputs or entire directories, automatically aggregating multi-sample sets.
-- **Fault-Tolerant SMAP Parsing:** Automatically inspects formatting, identifies missing metadata headers, and isolates/logs unparseable logs or system configuration files without throwing fatal crashes.
-- **Automatic Type Standardization:** Normalizes complex structural variant calling schemas (`deletion_nbase`, `duplication_split`, `translocation_interchr`, etc.) into cleanly categorized color spaces.
-- **Flexible Dynamic Layouts:** Adjusts output canvases automatically, mapping radial text and chord curves safely to maintain exact legend proportions across wide datasets.
+- Switches between a point-and-click GUI and an advanced command-line utility.
+- Recursively processes single `.csv` outputs or entire directories, automatically aggregating multi-sample sets.
+- Automatically inspects formatting, identifies missing metadata headers, and isolates/logs unparseable logs or system configuration files without throwing fatal crashes.
+- Normalizes complex structural variant calling schemas (`deletion_nbase`, `duplication_split`, `translocation_interchr`, etc.) into cleanly categorized color spaces.
+- Adjusts output canvases automatically, mapping radial text and chord curves safely to maintain exact legend proportions across wide datasets.
 
 ---
 
