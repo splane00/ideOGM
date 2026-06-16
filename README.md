@@ -60,12 +60,13 @@ python main.py path/to/smap_exports/
 ```Bash
 python main.py path/to/sample_patient_data.csv
 ```
-
+    
 **Customizing the Publication File Name**  
 To stream the finished figure canvas into a separate assets directory or supply specific figure nomenclature, use the -o or --output flag:
 ```Bash
 python main.py path/to/smap_exports/ -o clinical_trials/output/Figure_1_Sarcoma_Case.png
 ```
+    
 **Expected Data Input Format**  
 IdeOGM is custom-built to interpret Bionano Access workflow sheets and native structural variant framework schemas. It scans rows for standard header prefixes (#h) and parses the following explicit spatial vectors:  
 - RefcontigID1 / RefcontigID2 (Chromosome origins)  
@@ -81,14 +82,6 @@ Variants are plotted relative to a canonical hg38 reference architecture, applyi
 | Duplication | Orange |
 | INTERchromosomal translocation | Light Blue |
 | INTRAchromosomal translocation | Dark Blue |
-
-**Packaging Standalone Applications**  
-To convert this visual environment into an autonomous, double-clickable app package (.app or .exe) for distribute-ready lab sharing, utilize PyInstaller. To bypass potential segmentation faults caused by extraneous machine-learning bindings on large data-science environments, explicitly exclude redundant packages during execution:  
-```Bash
-pip install pyinstaller
-pyinstaller --onefile --windowed --exclude-module tensorflow --exclude-module PySide6 --exclude-module PyQt5 --name IdeOGM path/to/main.py
-```
-Your ready-to-use desktop client will compile natively within the generated dist/ subfolder.  
   
 ## License & Academic Reference  
 This software architecture is made available under the open-source MIT License. Feel free to use, modify, and distribute it in academic and commercial environments. If this visualization suite proves beneficial to your peer-reviewed publications or research pipelines, please attribute the work by citing the repository codebase or the corresponding communication manuscript.
