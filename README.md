@@ -75,7 +75,7 @@ IdeOGM is custom-built to interpret Bionano Access workflow sheets and native st
 
 **Visual Mapping Configuration**  
 Variants are plotted relative to a canonical hg38 reference architecture, applying continuous radial calculation algorithms to represent mutations accurately. Variants within an intra-chromosomal locus are represented as high-contrast structural bands (alpha=0.8), whereas distant segment rearrangements or inter-chromosomal links are projected across an interior spanning chord ribbon grid (alpha=0.4):
-| Structural Variant | Visual Color |
+| Structural Variant | Color |
 | :---: | :---: |
 | Deletion | Red |
 | Insertion | Light Green |
