@@ -22,13 +22,27 @@ The software bridges the gap between text-heavy genomic variant outputs and intu
 ## Installation & Requirements
 
 IdeOGM relies entirely on core Python analytical modules and standard data-science dependencies. 
-
-1. Ensure Python 3.8 or higher is installed on your local operating system.
-2. Install the necessary baseline requirements via standard Python package managers:
-
+1. Ensure Python 3.8 or higher is installed on your local operating system     
+2. Install the necessary baseline requirements via standard Python package managers:    
 ```bash
 pip install pandas matplotlib numpy
 ```
+### Running in CLI Mode (For Automation)
+If you are integrating IdeOGM into a bioinformatics pipeline, use the following terminal commands:
+```Bash
+python main.py /path/to/data/folder/
+```
+*Parses all compatible SMAP files and saves a combined combined_sv_ideogram.png in the target folder*
+
+```Bash
+python main.py /path/to/data/sample_01.csv
+```
+*Processes a single sample*
+
+```Bash
+python main.py /path/to/data/ -o /path/to/results/figure1.png
+```
+*Creates custom export location* 
 
 ## Usage Workflow
 **Interactive Graphical Interface (GUI)**
