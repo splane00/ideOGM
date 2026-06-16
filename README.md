@@ -1,9 +1,11 @@
 # IdeOGM
+*An open-source Python tool for targeted circular ideogram visualization of structural variants in soft tissue and bone tumors*
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+<p align="center">
+  <img src="ogm_ideogram.png" width="450">
+</p>
 
-**IdeOGM** is an open-source Python visualization suite designed for the rapid and customizable generation of high-resolution circular ideograms directly from Bionano Optical Genome Mapping (OGM) SMAP tabular data exports. 
+IdeOGM is an open-source Python visualization suite designed for the rapid and customizable generation of high-resolution circular ideograms directly from Bionano Optical Genome Mapping (OGM) SMAP tabular data exports. 
 
 The software bridges the gap between text-heavy genomic variant outputs and intuitive, publication-ready infographics. Built to support dual modalities, it offers a robust command-line interface for automated bioinformatics pipelines alongside a clean graphical user interface (GUI) optimized for cytogeneticists, clinical trial coordinators, and wet-lab researchers.
 
