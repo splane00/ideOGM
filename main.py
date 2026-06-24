@@ -120,6 +120,20 @@ def generate_ideogram(input_path, output_filename=None):
             if 90 < rot < 270: rot += 180
             ax.text(mid_t, 1.15, chrom_names[chrom], rotation=rot, ha='center', va='center', fontsize=16)
 
+    # Chromosome Outlines
+    for chrom, size in chrom_sizes.items():
+        t0, t1 = get_theta(chrom, 0), get_theta(chrom, size)
+        if t0 is not None and t1 is not None:
+            # Draw outer boundary arc
+            t_range = np.linspace(t0, t1, 100)
+            ax.plot(t_range, np.ones_like(t_range) * 1.05, color='black', lw=1, alpha=0.8)
+            # Draw inner boundary arc
+            ax.plot(t_range, np.ones_like(t_range) * 0.94, color='black', lw=1, alpha=0.8)
+            # Draw left boundary line
+            ax.plot([t0, t0], [0.94, 1.05], color='black', lw=1, alpha=0.8)
+            # Draw right boundary line
+            ax.plot([t1, t1], [0.94, 1.05], color='black', lw=1, alpha=0.8)
+
     # Plot SVs
     for _, row in combined_df.iterrows():
         t1 = get_theta(row['RefcontigID1'], row['RefStartPos'])
@@ -156,6 +170,7 @@ def generate_ideogram(input_path, output_filename=None):
     
     plt.savefig(output_filename, dpi=300, bbox_inches='tight')
     plt.close()
+    
     print(f"\nHigh-resolution circular ideogram saved to:\n   {os.path.abspath(output_filename)}")
 
 def run_gui_mode():
