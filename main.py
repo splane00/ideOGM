@@ -8,9 +8,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
 import sys
-import tkinter as tk
-from tkinter import filedialog, messagebox
-
 
 # 1. hg38 Chromosome Configuration
 chrom_sizes = {
@@ -124,15 +121,15 @@ def generate_ideogram(input_path, output_filename=None):
     for chrom, size in chrom_sizes.items():
         t0, t1 = get_theta(chrom, 0), get_theta(chrom, size)
         if t0 is not None and t1 is not None:
-            # Draw outer boundary arc
+            # Draw outer boundary arc (snug around intrachrom band)
             t_range = np.linspace(t0, t1, 100)
-            ax.plot(t_range, np.ones_like(t_range) * 1.05, color='black', lw=1, alpha=0.8)
-            # Draw inner boundary arc
-            ax.plot(t_range, np.ones_like(t_range) * 0.94, color='black', lw=1, alpha=0.8)
+            ax.plot(t_range, np.ones_like(t_range) * 1.04, color='black', lw=1, alpha=0.8)
+            # Draw inner boundary arc (snug around intrachrom band)
+            ax.plot(t_range, np.ones_like(t_range) * 0.96, color='black', lw=1, alpha=0.8)
             # Draw left boundary line
-            ax.plot([t0, t0], [0.94, 1.05], color='black', lw=1, alpha=0.8)
+            ax.plot([t0, t0], [0.96, 1.04], color='black', lw=1, alpha=0.8)
             # Draw right boundary line
-            ax.plot([t1, t1], [0.94, 1.05], color='black', lw=1, alpha=0.8)
+            ax.plot([t1, t1], [0.96, 1.04], color='black', lw=1, alpha=0.8)
 
     # Plot SVs
     for _, row in combined_df.iterrows():
@@ -173,83 +170,12 @@ def generate_ideogram(input_path, output_filename=None):
     
     print(f"\nHigh-resolution circular ideogram saved to:\n   {os.path.abspath(output_filename)}")
 
-def run_gui_mode():
-    """Launches a visual window for users who don't want to use the terminal."""
-    root = tk.Tk()
-    root.title("IdeOGM - Circular Ideogram Generator")
-    root.geometry("500x260")
-    root.resizable(False, False)
-    
-    # Simple formatting styles
-    bg_color = "#f5f5f5"
-    root.configure(bg=bg_color)
-    
-    # Title Label
-    tk.Label(
-        root, text="IdeOGM Visualization Tool", 
-        font=("Helvetica", 16, "bold"), bg=bg_color, fg="#333333"
-    ).pack(pady=15)
-    
-    tk.Label(
-        root, text="Select an OGM data file or folder to generate your circular ideogram plot.",
-        font=("Helvetica", 10), bg=bg_color, fg="#666666", wraplength=400, justify="center"
-    ).pack(pady=5)
 
-    def select_file():
-        file_path = filedialog.askopenfilename(
-            title="Select Bionano OGM CSV File",
-            filetypes=[("CSV Files", "*.csv"), ("All Files", "*.*")]
-        )
-        if file_path:
-            process_gui_request(file_path)
 
-    def select_folder():
-        folder_path = filedialog.askdirectory(title="Select Folder Container")
-        if folder_path:
-            process_gui_request(folder_path)
-
-    def process_gui_request(target_path):
-        root.withdraw() # Hide main frame during rendering
-        try:
-            # Reuses your core plotting logic seamlessly
-            generate_ideogram(target_path)
-            messagebox.showinfo("Success!", f"Visualization complete!\n\nYour file has been generated and saved to the same folder as your input data.")
-        except Exception as e:
-            messagebox.showerror("Error Encountered", f"An execution failure occurred:\n{str(e)}")
-        finally:
-            root.destroy() # Safely close app loop
-
-    # Interactive Action Buttons
-    btn_frame = tk.Frame(root, bg=bg_color)
-    btn_frame.pack(pady=20)
-    
-    tk.Button(
-        btn_frame, text="📁 Process Single File", font=("Helvetica", 11),
-        command=select_file, width=18, height=2, bg="#e1e1e1"
-    ).grid(row=0, column=0, padx=10)
-    
-    tk.Button(
-        btn_frame, text="📂 Process Folder (Batch)", font=("Helvetica", 11),
-        command=select_folder, width=18, height=2, bg="#e1e1e1"
-    ).grid(row=0, column=1, padx=10)
-
-    # Footer attribution text
-    tk.Label(
-        root, text="MIT Open Source License",
-        font=("Helvetica", 8, "italic"), bg=bg_color, fg="#999999"
-    ).pack(side="bottom", pady=10)
-
-    root.mainloop()
-
-# 4. Smart Argument Entry Logic
+# 4. CLI Execution
 if __name__ == "__main__":
-    # If the user did not pass arguments, automatically show the visual window!
-    if len(sys.argv) == 1:
-        run_gui_mode()
-    else:
-        # Standard CLI path for power users and server execution scripts
-        parser = argparse.ArgumentParser(description="IdeOGM Tabular Data Visualization Engine")
-        parser.add_argument("input", type=str, help="Path to file or folder.")
-        parser.add_argument("-o", "--output", type=str, default=None, help="Output destination image path.")
-        args = parser.parse_args()
-        generate_ideogram(args.input, args.output)
+    parser = argparse.ArgumentParser(description="IdeOGM Tabular Data Visualization Engine")
+    parser.add_argument("input", type=str, help="Path to file or folder.")
+    parser.add_argument("-o", "--output", type=str, default=None, help="Output destination image path.")
+    args = parser.parse_args()
+    generate_ideogram(args.input, args.output)

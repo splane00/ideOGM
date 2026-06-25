@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import main
 from main import generate_ideogram
 
 st.set_page_config(page_title="ideOGM Web", layout="centered")
