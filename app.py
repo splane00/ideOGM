@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 from main import generate_ideogram
+import data_gen 
 
 st.set_page_config(page_title="ideOGM Web", layout="centered")
 
@@ -16,6 +17,7 @@ st.divider()
 
 if st.session_state.page == "Generator":
     st.title("IdeOGM")
+    st.subheader("An open-source tool for targeted circular ideogram visualization of structural variants in soft tissue and bone tumors.")
     
     uploaded_files = st.file_uploader("Upload OGM CSV files", type="csv", accept_multiple_files=True)
     
