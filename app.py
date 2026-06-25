@@ -23,6 +23,7 @@ if uploaded_files:
     input_to_process = saved_files[0] if len(saved_files) == 1 else os.getcwd()
     output_png = "ideOGM_plot.png"
 
+    # THIS IS THE ONLY BUTTON CALL YOU NEED
     if st.button("Generate Ideogram", key="gen_ideogram_btn"):        
         with st.spinner('Processing genomic coordinates...'):
             try:
@@ -36,36 +37,8 @@ if uploaded_files:
                 # 3. Check for the file
                 if os.path.exists(output_png):
                     st.image(output_png)
-                    # ... add download button ...
                 else:
                     st.error("The function finished, but no file was created.")
-                    # DEBUG: List what IS in the folder
-                    st.write("Files in current directory:", os.listdir(os.getcwd()))
-            
-            except Exception as e:
-                # THIS WILL SHOW YOU THE EXACT PYTHON ERROR
-                st.error(f"The generation script failed with this error: {e}")
-                import traceback
-                st.code(traceback.format_exc())
-
-    
-
-    if st.button("Generate Ideogram"):
-        with st.spinner('Processing genomic coordinates...'):
-            try:
-                # 1. Print current working directory to console
-                print(f"DEBUG: Working Directory: {os.getcwd()}")
-                
-                # 2. CALL THE FUNCTION AND CAPTURE ERRORS
-                generate_ideogram(input_path, output_png)
-                
-                # 3. Check for the file
-                if os.path.exists(output_png):
-                    st.image(output_png)
-                    # ... add download button ...
-                else:
-                    st.error("The function finished, but no file was created.")
-                    # DEBUG: List what IS in the folder
                     st.write("Files in current directory:", os.listdir(os.getcwd()))
             
             except Exception as e:
