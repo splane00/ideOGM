@@ -57,9 +57,8 @@ elif st.session_state.page == "About":
 \nBionano Genomics. (n.d.). Compute Solutions for OGM: Hardware, Software, Cloud-Based Solutions.
 \nBionano Genomics. (2023). CMAP File Format Specification Sheet [Document 30039, Revision H].
 \nFoster & Create. (2026). Circular Ideogram Information Graphics.
-\nScholarly Article Roadmap for OGM Visualization (2026).
 \nMD Anderson Cancer Center. (2026). Bionano Optical Genome Mapping (OGM). The University of Texas MD Anderson Cancer Center.
+\nScholarly Article Roadmap for OGM Visualization (2026).
 \nTechnical Multi-Domain Analysis of OGM Data Architectures, File Specifications, and Applied Engineering Frameworks. (n.d.).
 \nYang, L. (2020). A practical guide for structural variation detection in human genome. Curr Protoc Hum Genet, 107(1).
- 
              """)
