@@ -23,7 +23,7 @@ if uploaded_files:
     input_to_process = saved_files[0] if len(saved_files) == 1 else os.getcwd()
     output_png = "ideOGM_plot.png"
 
-    if st.button("Generate Ideogram"):
+    if st.button("Generate Ideogram", key="gen_ideogram_btn"):        
         with st.spinner('Processing genomic coordinates...'):
             try:
                 # 1. Print current working directory to console
