@@ -21,20 +21,22 @@ if st.session_state.page == "Generator":
     
     # 1. Determine input file path
     if uploaded_files:
+    # If user uploads files, use the first one
         input_to_process = uploaded_files[0].name
         with open(input_to_process, "wb") as f:
             f.write(uploaded_files[0].getbuffer())
     else:
-        # Default fallback
-        input_to_process = "example_data.csv"
-        if os.path.exists(input_to_process):
-            st.info("No file uploaded. Displaying default example_data.csv.")
+        # FALLBACK: If nothing uploaded, use the example file included in the repo
+        example_path = "example_data.csv"
+        if os.path.exists(example_path):
+            input_to_process = example_path
+            st.info("No file uploaded. Processing default example_data.csv.")
         else:
-            st.error("Default 'example_data.csv' not found. Please upload a file.")
+            st.warning("Please upload a CSV file to begin.")
             input_to_process = None
 
-    # 2. Process and Display
-    if input_to_process and st.button("Generate Ideogram", key="gen_btn"):
+    # Proceed with generation
+    if input_to_process and st.button("Generate Ideogram", key="gen_ideogram_btn"):
         with st.spinner('Processing...'):
             try:
                 generate_ideogram(input_to_process, "ideOGM_plot.png")
