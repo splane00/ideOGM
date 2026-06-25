@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 from main import generate_ideogram
-import data_gen 
 
 st.set_page_config(page_title="ideOGM Web", layout="centered")
 
@@ -29,7 +28,7 @@ if st.session_state.page == "Generator":
             f.write(uploaded_files[0].getbuffer())
     else:
         # FALLBACK: If nothing uploaded, use the example file included in the repo
-        example_path = "example_data.csv"
+        example_path = "example2.csv"
         if os.path.exists(example_path):
             input_to_process = example_path
             st.info("No file uploaded. Processing default example_data.csv.")
