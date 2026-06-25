@@ -10,6 +10,10 @@ st.subheader("An open-source Python tool for targeted circular ideogram visualiz
 
 uploaded_files = st.file_uploader("Upload one or more OGM CSV files", type="csv", accept_multiple_files=True)
 
+min_length = st.slider("Minimum Variant Length (bp)", 1000, 100000, 5000)
+assembly = st.selectbox("Genome Assembly", ["GRCh37", "GRCh38"])
+
+
 if uploaded_files:
     # Save all uploaded files to the current working directory
     saved_files = []
@@ -32,7 +36,7 @@ if uploaded_files:
                 print(f"DEBUG: Processing files: {saved_files}")
                 
                 # 2. CALL THE FUNCTION AND CAPTURE ERRORS
-                generate_ideogram(input_to_process, output_png)
+                generate_ideogram(input_to_process, output_png, min_length=min_length, assembly=assembly)
                 
                 # 3. Check for the file
                 if os.path.exists(output_png):
@@ -40,6 +44,7 @@ if uploaded_files:
                 else:
                     st.error("The function finished, but no file was created.")
                     st.write("Files in current directory:", os.listdir(os.getcwd()))
+                
             
             except Exception as e:
                 # THIS WILL SHOW YOU THE EXACT PYTHON ERROR

@@ -1,4 +1,4 @@
-# !usr/bin/env python3
+#!/usr/bin/env python3
 
 import os
 import glob
@@ -67,7 +67,8 @@ def load_smap_csv(path):
     return df[required_columns]
 
 # 3. Main Plotting Logic Execution
-def generate_ideogram(input_path, output_filename=None):
+# Removed 'app' import dependency here
+def generate_ideogram(input_path, output_filename=None, min_length=5000, assembly="hg38"):
     if os.path.isdir(input_path):
         all_files = glob.glob(os.path.join(input_path, "*.csv"))
         files_to_process = [f for f in all_files if 'combined' not in f and 'ideogram' not in f]
@@ -121,14 +122,10 @@ def generate_ideogram(input_path, output_filename=None):
     for chrom, size in chrom_sizes.items():
         t0, t1 = get_theta(chrom, 0), get_theta(chrom, size)
         if t0 is not None and t1 is not None:
-            # Draw outer boundary arc (snug around intrachrom band)
             t_range = np.linspace(t0, t1, 100)
             ax.plot(t_range, np.ones_like(t_range) * 1.04, color='black', lw=1, alpha=0.8)
-            # Draw inner boundary arc (snug around intrachrom band)
             ax.plot(t_range, np.ones_like(t_range) * 0.96, color='black', lw=1, alpha=0.8)
-            # Draw left boundary line
             ax.plot([t0, t0], [0.96, 1.04], color='black', lw=1, alpha=0.8)
-            # Draw right boundary line
             ax.plot([t1, t1], [0.96, 1.04], color='black', lw=1, alpha=0.8)
 
     # Plot SVs
@@ -162,15 +159,11 @@ def generate_ideogram(input_path, output_filename=None):
     legend_elements = [Line2D([0], [0], color=type_color_map[t], lw=8, label=t) for t in known_types]
     ax.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(1.45, 1.1), title="Structural Variants", fontsize=14, title_fontsize=16, frameon=True, borderpad=1)
 
-    # Clean borders axis clean-up
     ax.set_axis_off()
-    
     plt.savefig(output_filename, dpi=300, bbox_inches='tight')
     plt.close()
     
     print(f"\nHigh-resolution circular ideogram saved to:\n   {os.path.abspath(output_filename)}")
-
-
 
 # 4. CLI Execution
 if __name__ == "__main__":
