@@ -5,8 +5,8 @@ from main import generate_ideogram
 
 st.set_page_config(page_title="ideOGM Web", layout="centered")
 
-st.title("🧬 ideOGM")
-st.subheader("Targeted Circular Ideogram Generator")
+st.title("IdeOGM: An open-source Python tool for targeted circular ideogram visualization of structural variants in soft tissue and bone tumors")
+st.subheader("Circular Ideogram Generator for OGM Data")
 
 uploaded_file = st.file_uploader("Upload your OGM CSV file", type="csv")
 
