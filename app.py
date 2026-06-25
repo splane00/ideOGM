@@ -53,4 +53,14 @@ elif st.session_state.page == "About":
 \nIdeOGM was developed with the Cancer Cytogenetics Laboratory at Johns Hopkins School of Medicine for a 2026 publication, “Beyond the Fusion: Genomic Complexity in 103 Fusion-Driven Sarcomas Analyzed by Cytogenetics and Optical Genome Mapping” (Zou et al., 2026). IdeOGM directly parses the downstream, filtered .csv datasets exported from standard OGM analysis pipelines. It automatically extracts critical metrics, including chromosomal breakpoint coordinates, SV classifications, and copy number states, to instantly generate high-resolution, customizable circular ideograms (Bionano Genomics, 2021; Technical Multi-Domain Analysis, n.d.).
 \nBy decoupling genomic visualization from vendor-locked server infrastructure, IdeOGM facilitates the rapid, reproducible, and publication-ready visual reporting of critical diagnostic variants (Technical Multi-Domain Analysis, n.d.)
 \nIdeOGM is written in Python and is freely available on GitHub at https://github.com/splane00/IdeOGM under the open-source MIT License.
-    """)
+\n**References:**     
+\nBionano Genomics. (2021). SMAP File Format Specification Sheet.
+\nBionano Genomics. (n.d.). Compute Solutions for OGM: Hardware, Software, Cloud-Based Solutions.
+\nBionano Genomics. (2023). CMAP File Format Specification Sheet [Document 30039, Revision H].
+\nFoster & Create. (2026). Circular Ideogram Information Graphics.
+\nScholarly Article Roadmap for OGM Visualization (2026).
+\nMD Anderson Cancer Center. (2026). Bionano Optical Genome Mapping (OGM). The University of Texas MD Anderson Cancer Center.
+\nTechnical Multi-Domain Analysis of OGM Data Architectures, File Specifications, and Applied Engineering Frameworks. (n.d.).
+\nYang, L. (2020). A practical guide for structural variation detection in human genome. Curr Protoc Hum Genet, 107(1).
+ 
+             """)
